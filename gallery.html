@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Rays Youth Ministry</title>
+<link rel="icon" href="images/logo-owl.jpg">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-row">
+    <a href="index.html" class="brand"><img src="images/logo-owl.jpg" alt="Rays of Worship Ministries emblem"> Rays Youth Ministry</a>
+    <button class="nav-toggle" aria-label="Toggle menu">&#9776;</button>
+    <nav class="tabs">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="programs.html">Programs</a>
+      <a href="gallery.html" class="active">Gallery</a>
+      <a href="videos.html">Videos</a>
+      <a href="social.html">Social Media</a>
+      <a href="contacts.html">Contacts</a>
+    </nav>
+  </div>
+</header>
+
+<section class="rayburst page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Gallery</p>
+    <h1>Moments from Rays</h1>
+    <p>Snapshots from Sunday services, outreach, and youth gatherings.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="gallery-grid" id="gallery-grid">
+      <figure><figcaption>Sunday Worship — add photo</figcaption></figure>
+      <figure><figcaption>The Word — add photo</figcaption></figure>
+      <figure><figcaption>Youth Fellowship — add photo</figcaption></figure>
+      <figure><figcaption>Outreach Day — add photo</figcaption></figure>
+      <figure><figcaption>Worship Team — add photo</figcaption></figure>
+      <figure><figcaption>Leaders — add photo</figcaption></figure>
+      <figure><figcaption>Baptism / Altar Moments — add photo</figcaption></figure>
+      <figure><figcaption>Community Events — add photo</figcaption></figure>
+    </div>
+    <p class="center mt" style="color:#5a5648;font-family:'Space Grotesk',sans-serif;font-size:.9rem;">
+      Photos here are managed from the <a href="/admin/" style="color:var(--coral);">content admin panel</a> —
+      add or remove any time, no code needed.
+    </p>
+  </div>
+</section>
+
+<script>
+  // Pull live photos from content/gallery.json (edited via /admin) and
+  // replace the placeholder tiles the moment real photos exist.
+  fetch('/content/gallery.json', { cache: 'no-store' })
+    .then(function (res) { return res.ok ? res.json() : null; })
+    .then(function (data) {
+      if (!data || !Array.isArray(data.photos) || data.photos.length === 0) return;
+      var grid = document.getElementById('gallery-grid');
+      grid.innerHTML = '';
+      data.photos.forEach(function (p) {
+        var fig = document.createElement('figure');
+        fig.style.padding = '0';
+        fig.style.border = 'none';
+        var img = document.createElement('img');
+        img.src = p.image;
+        img.alt = p.caption || 'Rays Youth Ministry photo';
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        fig.appendChild(img);
+        if (p.caption) {
+          var cap = document.createElement('figcaption');
+          cap.textContent = p.caption;
+          cap.style.position = 'absolute';
+          cap.style.bottom = '0';
+          cap.style.left = '0';
+          cap.style.right = '0';
+          cap.style.padding = '8px 10px';
+          cap.style.background = 'rgba(10,12,22,.65)';
+          cap.style.color = '#F7F4EC';
+          cap.style.fontSize = '.78rem';
+          fig.style.position = 'relative';
+          fig.appendChild(cap);
+        }
+        grid.appendChild(fig);
+      });
+    })
+    .catch(function () { /* keep placeholders if the fetch fails */ });
+</script>
+
+<section class="section-alt">
+  <div class="wrap section-head">
+    <p class="eyebrow">Share Yours</p>
+    <h2 style="color:var(--cream)">Were you at a service?</h2>
+    <p>Tag us on Instagram, Facebook, or TikTok using your Sunday photos and videos — we love featuring the community.</p>
+    <a class="btn btn-gold mt" href="social.html">Find Us on Social Media</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Find Us</h4>
+        <p>Rays of Worship Ministries<br>Jesus Power Centre<br>City Outreach, Naboa Road<br>Former Elgon Cinema Hall, opposite StarTimes Offices<br>Mbale City, Uganda</p>
+        <a class="btn btn-dark" style="margin-top:8px;" href="https://maps.app.goo.gl/WHZYJUiqNuFBnysZ9" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+      <div>
+        <h4>Service Time</h4>
+        <p>Every Sunday Evening<br>4:00pm – 6:00pm</p>
+        <h4 style="margin-top:18px;">Contact</h4>
+        <p><a href="mailto:youthministryrays@gmail.com">youthministryrays@gmail.com</a></p>
+      </div>
+      <div>
+        <h4>Follow Along</h4>
+        <div class="foot-social">
+          <a class="ic-youtube" href="https://www.youtube.com/results?search_query=Rays+Youth+Ministry" target="_blank" rel="noopener" aria-label="YouTube"><img src="https://cdn.simpleicons.org/youtube/ffffff" alt=""></a>
+          <a class="ic-facebook" href="https://www.facebook.com/search/top?q=Rays%20Youth%20Ministry" target="_blank" rel="noopener" aria-label="Facebook"><img src="https://cdn.simpleicons.org/facebook/ffffff" alt=""></a>
+          <a class="ic-instagram" href="https://www.instagram.com/raysyouthministry/" target="_blank" rel="noopener" aria-label="Instagram"><img src="https://cdn.simpleicons.org/instagram/ffffff" alt=""></a>
+          <a class="ic-tiktok" href="https://www.tiktok.com/search?q=Rays%20Youth%20Ministry" target="_blank" rel="noopener" aria-label="TikTok"><img src="https://cdn.simpleicons.org/tiktok/ffffff" alt=""></a>
+          <a class="ic-x" href="https://twitter.com/search?q=Rays%20Youth%20Ministry" target="_blank" rel="noopener" aria-label="X"><img src="https://cdn.simpleicons.org/x/ffffff" alt=""></a>
+          <a class="ic-whatsapp" href="https://wa.me/256750940002" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt=""></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">&copy; 2026 Rays Youth Ministry · Rays of Worship Ministries, Mbale City, Uganda</div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function (user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function () {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+</body>
+</html>
